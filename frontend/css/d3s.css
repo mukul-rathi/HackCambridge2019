@@ -1,0 +1,9 @@
+.container { width: 600px; }
+
+svg {
+  display: block;
+  width: 600px;
+  height: 120px;
+}
+
+circle { fill: tomato; }
