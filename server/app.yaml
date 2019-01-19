@@ -5,3 +5,6 @@ threadsafe: true
 handlers:
 - url: /.*
   script: main.app
+
+env_variables:
+    GOOGLE_APPLICATION_CREDENTIALS: '../../OutOfTheBox-8ddb21d64956.json'

@@ -14,34 +14,33 @@
 
 # [START app]
 import logging
-
+import six
 # [START imports]
 from flask import Flask, render_template, request
-import six
-from google.cloud import language
+#from google.cloud import language
+#from google.cloud.language import enums
+#from google.cloud.language import types
 # [END imports]
 
 # [START create_app]
 app = Flask(__name__)
 # [END create_app]
 
-client = language.LanguageServiceClient()
+#client = language.LanguageServiceClient()
 
-sentence = "" 
-@app.route('/', methods=['POST'])
+sentence = " get test"
+@app.route('/',methods = ['POST', 'GET'])
 def parse_tokens():
-    sentence += request.words;
-    document = language.types.Document(content=sentence, type=language.enums.Document.Type.PLAIN_TEXT)
-    entities = client.analyze_entities(document).entities
-    return entities
-  
+    if request.method == 'POST':
+        return "post test"
+    return sentence
 
-@app.errorhandler(500)
-def server_error(e):
-    # Log the error and stacktrace.
-    logging.exception('An error occurred during a request.')
-    return 'An internal error occurred.', 500
-# [END app]
+#    sentence += request.words;
+#    document = types.Document(
+#    content=sentence,
+#    type=enums.Document.Type.PLAIN_TEXT)
+#    entities = client.analyze_entities(document).entities
+#    return entities
 
 if __name__ == '__main__':
     app.run(debug=True)
