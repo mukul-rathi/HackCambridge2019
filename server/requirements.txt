@@ -1,0 +1,12 @@
+Flask==0.12.4
+Werkzeug<0.13.0,>=0.12.0
+cachetools
+google-api-core
+google-auth
+google-cloud-language
+googleapis-common-protos
+grpcio
+protobuf
+pyasn1
+pyasn1-modules
+rsa
