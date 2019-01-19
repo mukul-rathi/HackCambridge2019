@@ -28,11 +28,12 @@ app = Flask(__name__)
 
 #client = language.LanguageServiceClient()
 
-sentence = " get test"
+sentence = ""
 @app.route('/',methods = ['POST', 'GET'])
 def parse_tokens():
     if request.method == 'POST':
-        return "post test"
+        content = request.get_json()
+        return sentence + " ".join(content['words'])
     return sentence
 
 #    sentence += request.words;
