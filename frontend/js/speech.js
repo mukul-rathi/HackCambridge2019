@@ -64,7 +64,7 @@ if (!('webkitSpeechRecognition' in window)) {
     var new_final_data = [];
     for (var i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
-        new_final_data.append(event.results[i][0].transcript);
+        new_final_data.push(event.results[i][0].transcript);
         final_transcript += event.results[i][0].transcript;
       } else {
         interim_transcript += event.results[i][0].transcript;

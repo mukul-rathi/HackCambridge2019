@@ -1,16 +1,28 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro:400,600);
 * {
     font-family: Verdana, Arial, sans-serif;
   }
-  a:link {
-    color:#000;
-    text-decoration: none;
+
+  body {
+    background-image:url('../images/bg.jpg');
+    padding:10px;
+    font-family: "Source Code Pro", Consolas, monaco, monospace; line-height: 160%; font-size: 14px;  margin: 0;  background-color: black;
+    color:white;
+  } 
+  text, .nodetext {
+    color:white;
   }
-  a:visited {
-    color:#000;
+  path.link {
+    fill: none;
+    stroke-width: 2px;
   }
-  a:hover {
-    color:#33F;
-  }
+  h1 { font-size: 36px; margin: 10px 0; text-transform: uppercase; font-weight: normal;}
+  h2, h3 { font-size: 18px; margin: 5px 0 ; font-weight: normal;}
+  header {padding: 20px; position: absolute; top: 0; left: 0;}
+  a:link { color: #EE3124; text-decoration: none;}
+  a:visited { color: #EE3124; }
+  a:hover { color: #A4CD39; text-decoration: underline;}
+  a:active { color: #EE3124; }
   .button {
     background: -webkit-linear-gradient(top,#008dfd 0,#0370ea 100%);
     border: 1px solid #076bd2;
