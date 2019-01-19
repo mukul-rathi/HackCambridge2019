@@ -3,7 +3,7 @@ Werkzeug<0.13.0,>=0.12.0
 cachetools
 google-api-core
 google-auth
-google-cloud-language
+google-cloud-language>=0.26.1
 googleapis-common-protos
 grpcio
 protobuf

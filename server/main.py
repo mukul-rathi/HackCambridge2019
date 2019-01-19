@@ -14,7 +14,6 @@
 
 # [START app]
 import logging
-import six
 # [START imports]
 from flask import Flask, render_template, request
 #from google.cloud import language
@@ -27,8 +26,7 @@ app = Flask(__name__)
 # [END create_app]
 
 #client = language.LanguageServiceClient()
-
-sentence = ""
+sentence = " "
 @app.route('/',methods = ['POST', 'GET'])
 def parse_tokens():
     if request.method == 'POST':
@@ -36,7 +34,6 @@ def parse_tokens():
         return sentence + " ".join(content['words'])
     return sentence
 
-#    sentence += request.words;
 #    document = types.Document(
 #    content=sentence,
 #    type=enums.Document.Type.PLAIN_TEXT)
