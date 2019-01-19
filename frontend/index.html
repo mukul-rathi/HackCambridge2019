@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+	<h1 class="center" id="headline">
+	  <div id="info">
+		<p id="info_start">Click on the mic and begin speaking.</p>
+		<p id="info_speak_now">Speak now.</p>
+		<p id="info_no_speech">No speech was detected. You may need to adjust your
+		  <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+			microphone settings</a>.</p>
+		<p id="info_no_microphone" style="display:none">
+		  No microphone was found. Ensure that a microphone is installed and that
+		  <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
+		  microphone settings</a> are configured correctly.</p>
+		<p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
+		<p id="info_denied">Permission to use microphone was denied.</p>
+		<p id="info_blocked">Permission to use microphone is blocked. To change,
+		  go to chrome://settings/contentExceptions#media-stream</p>
+		<p id="info_upgrade">Web Speech API is not supported by this browser.
+		   Upgrade to <a href="//www.google.com/chrome">Chrome</a>
+		   version 25 or later.</p>
+	  </div>
+	  <div class="right">
+		<button id="start_button" onclick="startButton(event)">
+		  <img id="start_img" src="images/mic.gif" alt="Start"></button>
+	  </div>
+	  <div id="results">
+		<span id="final_span" class="final"></span>
+		<span id="interim_span" class="interim"></span>
+		<p>
+	  </div>
+    <!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script type="text/javascript" src="js/speech.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>
