@@ -37,13 +37,11 @@ def parse_tokens():
     entities = client.analyze_entities(document=document,encoding_type='UTF32').entities
     formatted_entities = []
     for entity in entities:
-        format_entity = "{"
+        format_entity = {}
         entity_type = enums.Entity.Type(entity.type)
-        format_entity += u'{:<16}: "{}"'.format('name', entity.name) + ', '
-        format_entity += u'{:<16}: "{}"'.format('type', entity_type.name)  + ', '
-        format_entity += u'{:<16}: {}'.format('salience', entity.salience)
-
-        format_entity += "}"
+        format_entity['name'] =  u'{}'.format(entity.name)
+        format_entity['type'] = u'{}'.format(entity_type.name)
+        format_entity['salience'] = u'{}'.format(entity.salience)
         formatted_entities.append(format_entity)
     return json.dumps({'entities':formatted_entities})
 
