@@ -16,33 +16,36 @@
 #from rake_nltk import Rake
 
 # [START imports]
+import json
 from google.cloud import language
 
 from flask import Flask, render_template, request
 
-#from google.cloud.language import types
-# [END imports]
+from google.cloud.language import types
+from google.cloud.language import enums
 
-# [START create_app]
 app = Flask(__name__)
-# [END create_app]
 
-#client = language.LanguageServiceClient()
-sentence = " "
-#r = Rake() # Uses stopwords for english from NLTK, and all puntuation characters.
-#r.extract_keywords_from_text(sentence)
+client = language.LanguageServiceClient()
+sentence = u'Jane Street would be a great sponsor for our hackathon.'
 @app.route('/',methods = ['POST', 'GET'])
 def parse_tokens():
     if request.method == 'POST':
         content = request.get_json()
         return sentence + " ".join(content['words'])
-    return sentence
+    document = types.Document(content=sentence, language='en', type=enums.Document.Type.PLAIN_TEXT)   
+    entities = client.analyze_entities(document=document,encoding_type='UTF32').entities
+    formatted_entities = []
+    for entity in entities:
+        format_entity = "{"
+        entity_type = enums.Entity.Type(entity.type)
+        format_entity += u'{:<16}: "{}"'.format('name', entity.name) + ', '
+        format_entity += u'{:<16}: "{}"'.format('type', entity_type.name)  + ', '
+        format_entity += u'{:<16}: {}'.format('salience', entity.salience)
 
-#    document = types.Document(
-#    content=sentence,
-#    type=enums.Document.Type.PLAIN_TEXT)
-#    entities = client.analyze_entities(document).entities
-#    return entities
+        format_entity += "}"
+        formatted_entities.append(format_entity)
+    return json.dumps({'entities':formatted_entities})
 
 if __name__ == '__main__':
     app.run(debug=True)
