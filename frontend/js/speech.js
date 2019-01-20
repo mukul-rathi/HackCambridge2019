@@ -71,7 +71,7 @@ if (!('webkitSpeechRecognition' in window)) {
       }
     }
 
-    
+    sendData(new_final_data);
 
     final_transcript = capitalize(final_transcript);
     final_span.innerHTML = linebreak(final_transcript);
@@ -80,6 +80,22 @@ if (!('webkitSpeechRecognition' in window)) {
       showButtons('inline-block');
     }
   };
+}
+
+function sendData(d){
+        $.ajax({
+            url: 'https://outofthebox-1547908407509.appspot.com/',
+            type: 'post',
+            crossDomain:true,
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                'words': d,
+            }),
+            dataType: 'json',
+            success: function (data) {
+                console.info(data);
+            }
+        });
 }
 
 function upgrade() {
