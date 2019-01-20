@@ -16,9 +16,13 @@ var w = 960,
 var vis;
 var force = d3.layout.force();
 
+var path;
+var node;
+
 vis = d3.select("#vis").append("svg").attr("width", w).attr("height", h);
 
-d3.json("../data/bubble_data.json", function(json) {
+// TODO
+d3.json("/hc2019/data/bubble_data.json", function(json) {
 
   root = json;
   root.fixed = true;
@@ -37,6 +41,30 @@ d3.json("../data/bubble_data.json", function(json) {
      update();
 });
 
+function updateJSOND3(){
+  // Re-select for update.
+  // path = vis.selectAll("path").attr('class','path.link');
+  // node = vis.selectAll("g").attr('class','g.node');
+
+  d3.json("/hc2019/data/bubble_data.json", function(json) {
+
+    root = json;
+    root.fixed = true;
+    root.x = w / 2;
+    root.y = h / 4;
+
+
+          // Build the path
+    var defs = vis.insert("svg:defs")
+        .data(["end"]);
+
+
+    defs.enter().append("svg:path")
+        .attr("d", "M0,-5L10,0L0,5");
+
+    update();
+  });
+}
 
 /**
  *
@@ -57,7 +85,7 @@ function update() {
     .on("tick", tick)
         .start();
 
-   var path = vis.selectAll("path.link")
+    path = vis.selectAll("path.link")
       .data(links, function(d) { return d.target.id; });
 
     path.enter().insert("svg:path")
@@ -72,7 +100,7 @@ function update() {
 
 
   // Update the nodes…
-  var node = vis.selectAll("g.node")
+  node = vis.selectAll("g.node")
       .data(nodes, function(d) { return d.id; });
 
 
@@ -88,13 +116,14 @@ function update() {
   // Append a circle
   var circles = nodeEnter.append("svg:circle")
       .attr("r", circleSize)
-      .style("fill", "#eee");
+      .style("fill", "#fe98fe");
 
   // Append images
   var images = nodeEnter.append("svg:image")
+        .attr("class","nodeimage")
         .attr("xlink:href",  function(d) { return d.img;})
-        .attr("x", function(d) { return 0;})
-        .attr("y", function(d) { return 0;})
+        .attr("x", function(d) { return Math.sqrt(d.size) * scaleFactor * -1;})
+        .attr("y", function(d) { return Math.sqrt(d.size) * scaleFactor * -1;})
         .attr("height", function(d) { return Math.sqrt(d.size) * scaleFactor * 2; })
         .attr("width", function(d) { return Math.sqrt(d.size) * scaleFactor * 2; });
 
@@ -106,6 +135,7 @@ function update() {
       .attr("fill", circleTextColor)
       .attr("text-anchor","middle")
       .attr("dominant-baseline","middle")
+      .attr("style", function(d) {return "font-size: " + Math.sqrt(d.size) * 2.3 + "px" })
       .text(function(d) { return d.text; });
 
   // make the image grow a little on mouse over
@@ -131,7 +161,7 @@ function update() {
               .attr("x", function(d) { return 0;})
               .attr("y", function(d) { return 0;})
               .attr("height", circleSize)
-              .attr("width", );
+              .attr("width", circleSize);
           });
 
   // Exit any old nodes.
