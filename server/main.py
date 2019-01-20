@@ -29,6 +29,19 @@ from google.cloud.language import enums
 app = Flask(__name__)
 CORS(app)
 
+
+
+def formatforD3(get_data):
+    types = {}
+    to_json = {"text": "Ideas", "img": "", "size":40, "children":[]};
+
+    for word in get_data:
+        if word["type"] not in types:
+            types[word["type"]] = len(types)
+            to_json["children"].append({"text": word["type"], "img": "", "size": 25, "children": []})
+        to_json["children"][types[word["type"]]]["children"].append({"text": word["name"], "size":16, "salience": word["salience"]})
+    return json.dumps(to_json)
+
 client = language.LanguageServiceClient()
 sentence = ""
 @app.route('/',methods = ['POST', 'GET'])
@@ -47,7 +60,7 @@ def parse_tokens():
         format_entity['type'] = u'{}'.format(entity_type.name)
         format_entity['salience'] = u'{}'.format(entity.salience)
         formatted_entities.append(format_entity)
-    return json.dumps({'entities':formatted_entities})
+    return formatforD3(formatted_entities)
 
 @app.route('/reset',methods = ['GET'])
 def reset():
@@ -56,3 +69,4 @@ def reset():
     return sentence
 if __name__ == '__main__':
     app.run(debug=True)
+
