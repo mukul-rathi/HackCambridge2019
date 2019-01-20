@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/style.css">
 
 	<title>Out of the Vox</title>
-	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   </head>
   <body>
 	<h1 class="center" id="headline">
@@ -53,5 +53,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   </body>
-  <button onclick="updateJSOND3()"></button>
+  <script>
+    function resetBub() {
+  $.ajax({
+      url: 'https://outofthebox-1547908407509.appspot.com/reset',
+      type: 'get',
+      crossDomain:true,
+      contentType: "application/json; charset=utf-8",
+      dataType: 'json',
+      success: function (data) {
+                $.ajax({
+                    url: 'savefile.php',
+                    type: 'get',
+                    crossDomain:true,
+                    contentType: "application/json; charset=utf-8",
+                    data: '',
+                    dataType: 'json',
+                    success: function (data) {
+                        return;
+                    }
+                });
+                updateJSOND3();
+      }
+  });
+}
+  </script>
+  <button onclick="resetBub()"></button>
 </html>

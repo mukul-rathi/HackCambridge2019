@@ -12,7 +12,7 @@ if (!('webkitSpeechRecognition' in window)) {
   var recognition = new webkitSpeechRecognition();
   recognition.continuous = true;
   recognition.interimResults = false;
-  
+
   recognition.onstart = function() {
     recognizing = true;
     showInfo('info_speak_now');
@@ -95,16 +95,16 @@ function sendData(d){
             success: function (data) {
                 $.ajax({
                     url: 'savefile.php',
-                    type: 'post',
+                    type: 'get',
                     crossDomain:true,
                     contentType: "application/json; charset=utf-8",
-                    data: {'data': data.replace("\'", "\"")},
+                    data: {'data': JSON.stringify(data).replace("\'", "\"")},
                     dataType: 'json',
                     success: function (data) {
                         return;
                     }
-                });        
-                console.info(data);
+                });
+                updateJSOND3();
             }
         });
 }
