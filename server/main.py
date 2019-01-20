@@ -27,12 +27,13 @@ from google.cloud.language import enums
 app = Flask(__name__)
 
 client = language.LanguageServiceClient()
-sentence = u'Jane Street would be a great sponsor for our hackathon.'
+sentence = ""
 @app.route('/',methods = ['POST', 'GET'])
 def parse_tokens():
+    global sentence
     if request.method == 'POST':
         content = request.get_json()
-        return sentence + " ".join(content['words'])
+        sentence = sentence + " " + " ".join(content['words'])
     document = types.Document(content=sentence, language='en', type=enums.Document.Type.PLAIN_TEXT)   
     entities = client.analyze_entities(document=document,encoding_type='UTF32').entities
     formatted_entities = []
