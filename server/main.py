@@ -46,5 +46,10 @@ def parse_tokens():
         formatted_entities.append(format_entity)
     return json.dumps({'entities':formatted_entities})
 
+@app.route('/reset',methods = ['GET'])
+def reset():
+    global sentence
+    sentence = ""
+    return sentence
 if __name__ == '__main__':
     app.run(debug=True)
