@@ -1,0 +1,8 @@
+runtime: python37
+
+handlers:
+- url: /.*
+  script: auto
+
+env_variables:
+    GOOGLE_APPLICATION_CREDENTIALS: './OutOfTheBox-8ddb21d64956.json'
