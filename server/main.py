@@ -13,11 +13,13 @@
 # limitations under the License.
 
 # [START app]
-import logging
+#from rake_nltk import Rake
+
 # [START imports]
+from google.cloud import language
+
 from flask import Flask, render_template, request
-#from google.cloud import language
-#from google.cloud.language import enums
+
 #from google.cloud.language import types
 # [END imports]
 
@@ -27,6 +29,8 @@ app = Flask(__name__)
 
 #client = language.LanguageServiceClient()
 sentence = " "
+#r = Rake() # Uses stopwords for english from NLTK, and all puntuation characters.
+#r.extract_keywords_from_text(sentence)
 @app.route('/',methods = ['POST', 'GET'])
 def parse_tokens():
     if request.method == 'POST':
