@@ -1,4 +1,16 @@
-
+function perc2color(perc) {
+	var r, g, b = 0;
+	if(perc < 50) {
+		r = 255;
+		g = Math.round(5.1 * perc);
+	}
+	else {
+		g = 255;
+		r = Math.round(510 - 5.10 * perc);
+	}
+	var h = r * 0x10000 + g * 0x100 + b * 0x1;
+	return '#' + ('000000' + h.toString(16)).slice(-6);
+}
 
 var scaleFactor = 12;
 // some colour variables
@@ -21,8 +33,7 @@ var node;
 
 vis = d3.select("#vis").append("svg").attr("width", w).attr("height", h);
 
-// TODO
-d3.json("/hc2019/data/bubble_data.json", function(json) {
+d3.json('/hc2019/data/bubble_data.json', function(json) {
 
   root = json;
   root.fixed = true;
@@ -116,7 +127,7 @@ function update() {
   // Append a circle
   var circles = nodeEnter.append("svg:circle")
       .attr("r", circleSize)
-      .style("fill", "#fe98fe");
+      .style("fill", function(d) {if ("salience" in d){return perc2color(d.salience * 100)} else {return '#fff'}});
 
   // Append images
   var images = nodeEnter.append("svg:image")
