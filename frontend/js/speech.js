@@ -93,6 +93,17 @@ function sendData(d){
             }),
             dataType: 'json',
             success: function (data) {
+                $.ajax({
+                    url: 'savefile.php',
+                    type: 'post',
+                    crossDomain:true,
+                    contentType: "application/json; charset=utf-8",
+                    data: {'data': data.replace("\'", "\"")},
+                    dataType: 'json',
+                    success: function (data) {
+                        return;
+                    }
+                });        
                 console.info(data);
             }
         });
