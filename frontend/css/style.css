@@ -5,13 +5,23 @@
 
   body {
     background-image:url('../images/bg.jpg');
+    background-size: cover;
     padding:10px;
     font-family: "Source Code Pro", Consolas, monaco, monospace; line-height: 160%; font-size: 14px;  margin: 0;  background-color: black;
     color:white;
-  } 
+  }
   text, .nodetext {
     color:white;
+    font-size:14px;
   }
+
+  .nodeimage {
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: auto;
+    margin-right:auto;
+  }
+
   path.link {
     fill: none;
     stroke-width: 2px;
@@ -43,7 +53,7 @@
   }
   .final {
     color: black;
-    padding-right: 3px; 
+    padding-right: 3px;
   }
   .interim {
     color: gray;
