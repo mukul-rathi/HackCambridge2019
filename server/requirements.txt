@@ -6,3 +6,4 @@ google-cloud-language
 protobuf
 googleapis-common-protos
 grpcio
+json
