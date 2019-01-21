@@ -1,7 +1,19 @@
 # Out Of The Vox
 HackCambridge 2019 
 
-Out of the Vox is a brainstorming smartphone app that makes mind maps by only listening to your voice!
+Out of the Vox is a brainstorming website app that makes mind maps by only listening to your voice!
+
+
+## Usage / Demo 
+
+To use the site head over to:
+https://mn493.user.srcf.net/hc2019/
+
+All you have to do is click the mic to start/stop recording. The mind map will then refresh with the new content (although you may need to refresh the page to see the changes). 
+
+The site doesn't currently have a reset button between mind map uses. To trigger this manually, force refresh https://outofthebox-1547908407509.appspot.com/reset and http://mn493.user.srcf.net/hc2019/reset.php?fbclid=IwAR2hJDJcaKzaPm-nl9vL_cvV6jS66MEJvP9YuZZzPwRYwpu4S0zIyKr4pbU.
+
+
 
 
 ## Inspiration
